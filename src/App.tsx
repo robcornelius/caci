@@ -5,8 +5,9 @@ import "./App.css";
 import GetStarshipsButton from "./components/getStarshipsButton";
 
 function App() {
-  const getStarships = () => {
+  const getStarships = async () => {
     console.log("get starships");
+    const rawData = await fetch("https://swapi.dev/api/starships");
   };
 
   return (
