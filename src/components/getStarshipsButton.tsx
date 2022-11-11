@@ -8,6 +8,7 @@ const GetStarshipsButton = styled.button`
   padding: 1rem;
   border: none;
   border-radius: 3px;
+  cursor: pointer;
 `;
 
 export default GetStarshipsButton;

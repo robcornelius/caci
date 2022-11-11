@@ -3,11 +3,17 @@ import logo from "./img/Star_Wars_Logo.svg";
 import cup from "./img/cup.svg";
 import "./App.css";
 import GetStarshipsButton from "./components/getStarshipsButton";
+import useStartshipsContext from "./hooks/useStarshipsContext";
+import getStarshipsApi from "./api/starships";
 
 function App() {
+  const { starships, setStarships } = useStartshipsContext();
   const getStarships = async () => {
-    console.log("get starships");
-    const rawData = await fetch("https://swapi.dev/api/starships");
+    const returnedStarships = await getStarshipsApi(
+      "https://swapi.dev/api/starships/"
+    );
+
+    setStarships({ starships: returnedStarships });
   };
 
   return (

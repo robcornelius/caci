@@ -8,13 +8,7 @@ import {
 export const StarshipsContext = createContext({} as IStarShips);
 
 const StarshipsProvider = ({ children }: StarshipProviderProps) => {
-  const initialVal = {
-    count: 0,
-    next: null,
-    previous: null,
-    results: null,
-  };
-  const [starships, setStarships] = useState<Starships>(initialVal);
+  const [starships, setStarships] = useState<Starships>({ starships: [] });
 
   return (
     <StarshipsContext.Provider value={{ starships, setStarships }}>

@@ -20,11 +20,14 @@ export type Starship = {
   created: string;
   edited: string;
 };
-export type Starships = {
+export type StarshipsPage = {
   count: number;
   next: null | string;
   previous: null | string;
   results: null | Starship[];
+};
+export type Starships = {
+  starships: Starship[];
 };
 export interface IStarShips {
   starships: Starships;
