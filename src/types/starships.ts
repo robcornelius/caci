@@ -19,6 +19,7 @@ export type Starship = {
   url: string;
   created: string;
   edited: string;
+  cup?: boolean;
 };
 export type StarshipsPage = {
   count: number;

@@ -5,6 +5,8 @@ import "./App.css";
 import GetStarshipsButton from "./components/getStarshipsButton";
 import useStartshipsContext from "./hooks/useStarshipsContext";
 import getStarshipsApi from "./api/starships";
+import StarshipDetails from "./components/StarshipDetails";
+import { Starship } from "./types/starships";
 
 function App() {
   const { starships, setStarships } = useStartshipsContext();
@@ -12,8 +14,25 @@ function App() {
     const returnedStarships = await getStarshipsApi(
       "https://swapi.dev/api/starships/"
     );
-
-    setStarships({ starships: returnedStarships });
+    const filteredStarships = returnedStarships.filter((ship: Starship) => {
+      return Number(ship.crew) < 10;
+    });
+    const sortedStarships = filteredStarships.sort((a, b) => {
+      if (a.crew.search("-") > 0) {
+        a.crew.substring(a.crew.lastIndexOf("-") + 1);
+      }
+      if (b.crew.search("-") > 0) {
+        b.crew.substring(b.crew.lastIndexOf("-") + 1);
+      }
+      if (parseInt(a.crew) > parseInt(b.crew)) {
+        return 1;
+      }
+      if (parseInt(a.crew) < parseInt(b.crew)) {
+        return -1;
+      }
+      return 0;
+    });
+    setStarships({ starships: sortedStarships });
   };
 
   return (
@@ -33,6 +52,11 @@ function App() {
           Get Starships
         </GetStarshipsButton>
       </header>
+      {starships.starships.length === 0 && <p>Loading</p>}
+      {starships.starships.length !== 0 &&
+        starships.starships.map((ship: any, i: number) => {
+          return <StarshipDetails starships={ship} key={i} />;
+        })}
     </div>
   );
 }
