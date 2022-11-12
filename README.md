@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# CACI code test
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -16,8 +16,9 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# TBD
+
+In an ideal world I would have written unit tests for as many functions as possible and then cypress integration tests. Time is short
 
 ### `npm run build`
 
