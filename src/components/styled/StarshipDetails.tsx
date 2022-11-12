@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const StarshipWrapper = styled.div`
   border: 2px solid rgb(255, 233, 31);
   border-radius: 4px;
-  margin: 0 5% 5% 5%;
+  margin: 0 auto 5% auto;
   padding: 1rem;
+  max-width: 1280px;
   & .header {
     font-weight: bold;
   }
