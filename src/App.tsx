@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./img/Star_Wars_Logo.svg";
 import cup from "./img/cup.svg";
 import "antd/dist/antd.css";
@@ -9,15 +9,20 @@ import getStarshipsApi from "./api/starships";
 import StarshipDetails from "./components/StarshipDetails";
 import StarshipDrawer from "./components/styled/StarshipDrawer";
 import StarshipShowAll from "./components/StarshipShowAll";
+import LoadingSpinner from "./components/styled/LoadingSpinner";
+import grid from "./img/grid.svg";
 
 function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { starships, setStarships, drawerOpen, setDrawerOpen } =
     useStartshipsContext();
   const getStarships = async () => {
+    setIsLoading(true);
     const returnedStarships = await getStarshipsApi(
       "https://swapi.dev/api/starships/"
     );
     setStarships({ starships: returnedStarships });
+    setIsLoading(false);
   };
   const closeDrawer = () => {
     setDrawerOpen(false);
@@ -40,7 +45,11 @@ function App() {
           Get Starships
         </GetStarshipsButton>
       </header>
-      {starships.starships.length === 0 && <p>Loading</p>}
+      {isLoading && (
+        <LoadingSpinner>
+          <img src={grid} alt="loading" height={50} width={50} />
+        </LoadingSpinner>
+      )}
       {starships.starships.length !== 0 &&
         starships.starships.map((ship: any, i: number) => {
           return <StarshipDetails starshipDetails={ship} key={i} />;
