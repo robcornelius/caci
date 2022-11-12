@@ -33,6 +33,10 @@ export type Starships = {
 export interface IStarShips {
   starships: Starships;
   setStarships: (value: Starships) => void;
+  starship: Starship;
+  setStarship: (value: Starship) => void;
+  drawerOpen: boolean;
+  setDrawerOpen: (value: boolean) => void;
 }
 export type StarshipProviderProps = {
   children?: React.ReactNode;
