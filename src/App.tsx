@@ -14,6 +14,8 @@ import grid from "./img/grid.svg";
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasLoaded, setHasLoaded] = useState<boolean>(false);
+
   const { starships, setStarships, drawerOpen, setDrawerOpen } =
     useStartshipsContext();
   const getStarships = async () => {
@@ -23,6 +25,7 @@ function App() {
     );
     setStarships({ starships: returnedStarships });
     setIsLoading(false);
+    setHasLoaded(true);
   };
   const closeDrawer = () => {
     setDrawerOpen(false);
@@ -50,7 +53,7 @@ function App() {
           <img src={grid} alt="loading" height={50} width={50} />
         </LoadingSpinner>
       )}
-      {starships.starships.length !== 0 &&
+      {hasLoaded &&
         starships.starships.map((ship: any, i: number) => {
           return <StarshipDetails starshipDetails={ship} key={i} />;
         })}
